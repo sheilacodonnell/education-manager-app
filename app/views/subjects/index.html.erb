@@ -1,1 +1,25 @@
-<h1>hi</h1>
+<div class="container">
+  <h3>All Subjects</h3>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Class Period</th>
+      <th scope="col">Name</th>
+      <th scope="col">Student Count</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @subjects.each do |subject|%>
+      <tr>
+        <td> <%= subject.class_period %></td>
+        <td> <%= subject.name %></td>
+        <td> <%= subject.students.length %></td>
+        <td> <%= link_to 'Add students', edit_teacher_subject_path(@teacher.id, subject) %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</div>
