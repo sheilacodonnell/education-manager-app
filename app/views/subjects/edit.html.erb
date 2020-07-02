@@ -1,4 +1,6 @@
 <div class="container">
+<%= render 'teachers/nav' %>
+
   <h3>Add students to <%= @subject.name %></h3>
   <%= form_with(model: @subject, url: teacher_subject_path(@teacher)) do |subject_form| %>
   <form>

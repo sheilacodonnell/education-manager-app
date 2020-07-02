@@ -4,6 +4,8 @@
 <p>Add subject to your schedule</p>
 
 
+<%= render 'teachers/nav' %>
+
 <%= form_with(model: @subject, url: teacher_subjects_path(@teacher)) do |subject_form| %>
 <form>
 

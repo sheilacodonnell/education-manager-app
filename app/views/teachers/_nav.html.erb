@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand" href="#">Subjects</a>
-  <a class="navbar-brand" href="#">Students</a>
-  <%= link_to "Sign Out", destroy_teacher_session_path, method: :delete %>
-
+  <%= link_to 'Teacher Home', teacher_path(current_teacher), class: "navbar-brand"%>
+  <%= link_to 'Subjects', teacher_subjects_path(current_teacher), class: "navbar-brand"%>
+  <%= link_to 'Students', teacher_subjects_path(current_teacher), class: "navbar-brand"%>
+  <%= link_to "Sign Out", destroy_teacher_session_path, method: :delete, class: "navbar-brand" %>
 </nav>
