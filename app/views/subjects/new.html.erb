@@ -1,0 +1,16 @@
+<div class="container">
+
+<h1>Hello, <%= @teacher.name %></h1>
+<p>Add subject to your schedule</p>
+
+
+<%= form_with model: @subject do |subject_form| %>
+  <%= subject_form.label :name %>
+    <%= subject_form.text_field :name %>
+  <%= subject_form.label :class_period %>
+    <%= subject_form.number_field :class_period %>
+  <%= subject_form.submit "Create" %>
+
+<% end %>
+
+</div>
