@@ -1,26 +1,27 @@
 <div class="container">
+  <%= render 'teachers/nav' %>
 
-<h1>Hello, <%= @teacher.name %></h1>
-<p>Add subject to your schedule</p>
+  <h3>Add subject to your schedule</h3>
 
+  <%= form_with(model: @subject, url: teacher_subjects_path(@teacher)) do |subject_form| %>
+    <form>
+      <div class="row">
+        <div class="form-group col-md-4">
+          <%= subject_form.label :name, class: 'control-label' %>
+          <%= subject_form.text_field :name, class: 'form-control' %>
+        </div>
 
-<%= render 'teachers/nav' %>
-
-<%= form_with(model: @subject, url: teacher_subjects_path(@teacher)) do |subject_form| %>
-<form>
-
-  <div class="form-group">
-  <%= subject_form.label :name %>
-    <%= subject_form.text_field :name %>
+        <div class="form-group col-md-4">
+          <%= subject_form.label :class_period, class: 'control-label' %>
+          <%= subject_form.select :class_period, options_for_select(@teacher.available_class_periods), {include_blank: true}, { class: "form-control" } %>
+        </div>
       </div>
-  <div class="form-group">
-
-  <%= subject_form.label :class_period %>
-    <%= subject_form.number_field :class_period %>
-    </div>
-  <%= subject_form.submit "Create" %>
-</form>
-
-<% end %>
-
+    
+      <div class="row">
+        <div class="form-group col-md-4 pull-right">
+          <%= subject_form.submit "Create", class:"btn btn-primary"%>
+        </div>
+      </div>
+    </form>
+  <% end %>
 </div>

@@ -12,12 +12,12 @@ class SubjectsController < ApplicationController
   end
 
   def create
-    @subject = Subject.create!(subject_params)
-    if @subject.save
+    @subject = Subject.new(subject_params)
+    if @subject.valid?
+      @subject.save
       redirect_to teacher_subjects_path(@teacher)
     else
-      flash[:error] = "Could not save subject"
-      redirect_to new_subject_path
+      render :new
     end
   end
 
@@ -30,8 +30,7 @@ class SubjectsController < ApplicationController
     if @subject.save
       redirect_to teacher_subjects_path(@teacher)
     else
-      flash[:error] = "Could not save subject"
-      redirect_to edit_teacher_subject_path
+      render action: :edit
     end
   end
 

@@ -1,22 +1,20 @@
-<form>
-<%= form_with(model: @subject, url: teacher_subjects_path(@teacher)) do |subject_form| %>
-  <div class="form-group">
-  <%= subject_form.label :name %>
-    <%= subject_form.text_field :name %>
-      </div>
-  <div class="form-group">
-
-  <%= subject_form.label :class_period %>
-    <%= subject_form.number_field :class_period %>
+<div class="container">
+  <form>
+  <%= form_with(model: @subject, url: teacher_subjects_path(@teacher)) do |subject_form| %>
+    <div class="form-group">
+    <%= subject_form.label :name %>
+      <%= subject_form.text_field :name %>
+        </div>
+    <div class="form-group">
+      <%= subject_form.label :class_period %>
+      <%= subject_form.number_field :class_period %>
     </div>
 
-  <div class="form-group form-check">
-    <label class="form-check-label">Students</label>
-
-  <%= subject_form.collection_check_boxes :student_ids, Student.all, :id, :name %>
-
+    <div class="form-group form-check">
+      <%= subject_form.label :class_period, class: 'form-check-label' %>
+      <%= subject_form.collection_check_boxes :student_ids, Student.all, :id, :name %>
     </div>
-  <button type="submit" class="btn btn-primary">  <%= subject_form.submit "Create" %></button>
-</form>
-
-<% end %>
+    <button type="submit" class="btn btn-primary">  <%= subject_form.submit "Create" %></button>
+  </form>
+  <% end %>
+</div>

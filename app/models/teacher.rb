@@ -9,4 +9,10 @@ class Teacher < ApplicationRecord
   def name
     [first_name, last_name].join(' ')
   end
+
+  def available_class_periods
+    class_periods = (1..8).to_a
+    current_class_periods = subjects.map(&:class_period)
+    class_periods - current_class_periods
+  end
 end
