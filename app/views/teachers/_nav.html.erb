@@ -1,5 +1,9 @@
 
+<div class='text-center'>
+<i class="fa fa-graduation-cap" aria-hidden="true"></i>
+</div>
 <ul class="nav justify-content-center">
+
   <li class="nav-item">
   <%= link_to 'Teacher Home', teacher_path(current_teacher), class: "nav-link"%>
   </li>
@@ -7,6 +11,6 @@
   <%= link_to 'Subjects', teacher_subjects_path(current_teacher), class: "nav-link"%>
   </li>
   <li class="nav-item">
-  <%= link_to "Sign Out", destroy_teacher_session_path, method: :delete, class: "nav-link float-right" %>
+  <%= link_to "Sign Out", destroy_teacher_session_path, method: :delete, class: "nav-link" %>
   </li>
 </ul>
