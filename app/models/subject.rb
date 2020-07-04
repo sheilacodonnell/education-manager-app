@@ -12,4 +12,12 @@ class Subject < ApplicationRecord
     not_available = students.includes(:subjects).where('subjects.class_period =?', self.class_period).references(:subjects)
     students - not_available
   end
+
+  def current_assignments
+    assignments.where('due_date >= ?', Date.today)
+  end
+
+  def past_assignments
+    assignments.where('due_date < ?', Date.today - 1.day)
+  end
 end

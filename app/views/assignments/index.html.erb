@@ -1,0 +1,14 @@
+<div class="container">
+<%= render 'teachers/nav' %>
+
+<div class='row mt-3 mb-3'>
+  <h3 class='col-md-6'>Assignments for <%= @subject.name %> - <%= class_period_formatted(@subject) %></h3>
+</div>
+  <%= link_to 'Add Assignment', new_teacher_subject_assignment_path(@teacher, @subject), class: ' float-right btn btn-success mb-3'%>
+
+<h5 class='mt-2'>Current Assignments</h5>
+  <%= render 'table', assignments: @current_assignments, custom_style: 'table-success' %>
+
+<h5>Past Assignments</h5>
+  <%= render 'table', assignments: @past_assignments, custom_style: 'table-danger' %>
+</div>

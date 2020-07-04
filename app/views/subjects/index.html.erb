@@ -2,9 +2,10 @@
 <%= render 'teachers/nav' %>
 
 <div class='row'>
-<h3 class='col-md-4'>All Subjects</h3>
-  <%= link_to 'Add Subject', new_teacher_subject_path, class: 'btn btn-success pull-right'%>
-  </div>
+  <h3 class='col-md-4'>All Subjects</h3>  
+</div>
+
+<%= link_to 'Add Subject', new_teacher_subject_path, class: 'btn btn-success float-right mb-3'%>
 
   <table class="table table-striped">
     <thead>
@@ -12,6 +13,7 @@
         <th scope="col">Class Period</th>
         <th scope="col">Name</th>
         <th scope="col">Student Count</th>
+        <th scope="col"></th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -21,7 +23,15 @@
           <td> <%= subject.class_period %></td>
           <td> <%= subject.name %></td>
           <td> <%= subject.students.length %></td>
-          <td> <%= link_to 'Add students', edit_teacher_subject_path(@teacher.id, subject) %> </td>
+          <td><%= link_to edit_teacher_subject_path(@teacher.id, subject), class: "btn btn-warning" do %>
+            Students <i class="fa fa-users" aria-hidden="true"></i>
+          <% end %>
+        </td>
+          <td><%= link_to teacher_subject_assignments_path(@teacher.id, subject), class: "btn btn-info" do %>
+            Assignments <i class="fa fa-flask" aria-hidden="true"></i>
+          <% end %>
+        </td>
+
         </tr>
       <% end %>
     </tbody>

@@ -3,4 +3,19 @@
 
 <h1>Hello, <%= @teacher.name %></h1>
 
+
+
+    <% @teacher.assignments.last(5).each do |assignment|%>
+<div class="card border-info mb-3" style="max-width: 18rem;">
+  <div class="card-header"><%= assignment.subject.name %> - <%= class_period_formatted(assignment.subject) %></div>
+  <div class="card-body text-info">
+    <h5 class="card-title"><%= assignment.title %></h5>
+    <p class="card-text"><%= basic_date(assignment.due_date) %></p>
+  </div>
+</div>
+
+      <% end %>
+
+
+</div>
 </div>

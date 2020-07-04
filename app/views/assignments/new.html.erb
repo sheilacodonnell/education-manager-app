@@ -1,0 +1,27 @@
+<div class="container">
+  <%= render 'teachers/nav' %>
+
+  <h3>Add Assignment</h3>
+
+  <%= form_with(model: @assignment, url: teacher_subject_assignments_path(@teacher.id, @subject.id)) do |assignment| %>
+    <form>
+      <div class="row">
+        <div class="form-group col-md-4">
+          <%= assignment.label :title, class: 'control-label' %>
+          <%= assignment.text_field :title, class: 'form-control' %>
+        </div>
+
+        <div class="form-group col-md-4">
+          <%= assignment.label :due_date, class: 'control-label' %>
+          <%= assignment.date_field :due_date, class: 'form-control' %>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="form-group col-md-4 pull-right">
+          <%= assignment.submit "Create", class:"btn btn-primary"%>
+        </div>
+      </div>
+    </form>
+  <% end %>
+</div>
