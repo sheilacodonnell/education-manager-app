@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   }
 
   resources :teachers do
-    resources :subjects
+    resources :subjects do
+      get :remove_student
+    end
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

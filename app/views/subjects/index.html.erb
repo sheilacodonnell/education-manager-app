@@ -1,7 +1,10 @@
 <div class="container">
 <%= render 'teachers/nav' %>
 
-<h3>All Subjects</h3>
+<div class='row'>
+<h3 class='col-md-4'>All Subjects</h3>
+  <%= link_to 'Add Subject', new_teacher_subject_path, class: 'btn btn-success pull-right'%>
+  </div>
 
   <table class="table table-striped">
     <thead>

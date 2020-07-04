@@ -1,13 +1,33 @@
 <div class="container">
 <%= render 'teachers/nav' %>
 
-  <h3>Add students to <%= @subject.name %></h3>
+<h3>Current Students in <%= @subject.name %> (<%= @subject.class_period.ordinalize%> period)</h3>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @subject.students.each do |student|%>
+        <tr>
+          <td> <%= student.first_name %></td>
+          <td> <%= student.last_name %></td>
+          <td><%= link_to 'Remove', teacher_subject_remove_student_path(subject_id: @subject.id, student_id: student.id)%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <h3>Add students</h3>
   <%= form_with(model: @subject, url: teacher_subject_path(@teacher)) do |subject_form| %>
     <form>
       <div class="form-group">
         <%= subject_form.collection_select(:student_ids, @subject.available_students, :id, :name, {}, multiple: true, class: 'form-control selectpicker') %>
       </div>
-      <button type="submit" class="btn btn-primary">  <%= subject_form.submit "Add students" %></button>
+       <%= subject_form.submit "Add students", class: 'btn btn-primary' %>
     </form>
   <% end %>
 </div>

@@ -1,10 +1,10 @@
 class SubjectsController < ApplicationController
   before_action :load_teacher
-  before_action :load_subject, only: [:edit, :update]
+  before_action :load_subject, only: [:edit, :update, :remove_student]
   respond_to :html
 
   def index
-    @subjects = @teacher.subjects.order(:class_period)
+    @subjects = @teacher.subjects.includes(:students).order(:class_period)
   end
 
   def new
@@ -25,13 +25,18 @@ class SubjectsController < ApplicationController
   end
 
   def update
-
     @subject.update!(subject_params)
     if @subject.save
       redirect_to teacher_subjects_path(@teacher)
     else
       render action: :edit
     end
+  end
+
+  def remove_student
+    student = Student.find_by(id: params[:student_id])
+    @subject.students.delete(student)
+    redirect_to teacher_subjects_path(@teacher)
   end
 
   private
@@ -41,10 +46,14 @@ class SubjectsController < ApplicationController
   end
 
   def load_subject
-    @subject = @teacher.subjects.find(params[:id])
+    @subject = @teacher.subjects.find(params[:id] || params[:subject_id])
   end
 
   def subject_params
-    params.require(:subject).permit(:name, :class_period, student_ids: []).merge(teacher_id: current_teacher.id)
+    params.require(:subject)
+      .permit(:name,
+              :class_period)
+      .merge(teacher_id: current_teacher.id,
+             student_ids: @subject.student_ids + params[:subject][:student_ids].reject(&:blank?))
   end
 end
