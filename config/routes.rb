@@ -9,4 +9,5 @@ Rails.application.routes.draw do
       resources :assignments
     end
   end
+  resources :students
 end

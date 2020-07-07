@@ -16,4 +16,8 @@ class Teacher < ApplicationRecord
     current_class_periods = subjects.map(&:class_period)
     class_periods - current_class_periods
   end
+
+  def due_now_assignments
+    assignments.where('due_date = ?', Date.today)
+  end
 end

@@ -12,7 +12,7 @@ class SubjectsController < ApplicationController
   end
 
   def create
-    @subject = Subject.new(subject_params)
+    @subject = Subject.new(create_subject_params)
     if @subject.valid?
       @subject.save
       redirect_to teacher_subjects_path(@teacher)
@@ -25,7 +25,7 @@ class SubjectsController < ApplicationController
   end
 
   def update
-    @subject.update!(subject_params)
+    @subject.update!(update_subject_params)
     if @subject.save
       redirect_to teacher_subjects_path(@teacher)
     else
@@ -49,7 +49,14 @@ class SubjectsController < ApplicationController
     @subject = @teacher.subjects.find(params[:id] || params[:subject_id])
   end
 
-  def subject_params
+  def create_subject_params
+    params.require(:subject)
+      .permit(:name,
+              :class_period)
+      .merge(teacher_id: current_teacher.id)
+  end
+
+  def update_subject_params
     params.require(:subject)
       .permit(:name,
               :class_period)

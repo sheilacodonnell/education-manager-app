@@ -5,8 +5,8 @@
 <hr>
   <div class="row">
     <div class='col'>
-    <h5>Your Upcoming Assignments</h5>
-        <% @teacher.assignments.last(5).each do |assignment|%>
+    <h5>Assignments Due Today</h5>
+        <% @teacher.assignments.where('due_date = ?', DateTime.current.beginning_of_day).each do |assignment|%>
           <div class="card border-info mb-3" style="max-width: 18rem;">
           <div class="card-header"><%= assignment.subject.name %> - <%= class_period_formatted(assignment.subject) %></div>
           <div class="card-body text-info">

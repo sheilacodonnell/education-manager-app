@@ -11,6 +11,9 @@
   <%= link_to 'Subjects', teacher_subjects_path(current_teacher), class: "nav-link"%>
   </li>
   <li class="nav-item">
+  <%= link_to 'Students', students_path, class: "nav-link"%>
+  </li>
+  <li class="nav-item">
   <%= link_to "Sign Out", destroy_teacher_session_path, method: :delete, class: "nav-link" %>
   </li>
 </ul>
