@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   resources :teachers do
     resources :subjects do
       get :remove_student
-      resources :assignments
+      resources :assignments do
+        resources :submissions
+      end
     end
   end
   resources :students

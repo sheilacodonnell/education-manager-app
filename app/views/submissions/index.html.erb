@@ -1,0 +1,33 @@
+<div class='container'>
+  <div class='row mt-3 mb-3'>
+    <h3 class='col-md-6'>Submissions for <%= @assignment.title %></h3>
+  </div>
+  <% if @assignment.complete_submission_students.nil? %>
+    <%= link_to 'Add Submission', new_teacher_subject_assignment_submission_path(@teacher, @subject, @assignment), class: ' float-right btn btn-success mb-3'%>
+  <% end%>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Grade</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @submissions.each do |submission|%>
+      <tr class='table-success'>
+        <td class='col'> <%= submission.student.name %></td>
+        <td class='col'> <%= submission.grade %></td>
+        </td>
+      </tr>
+      <% end %>
+      <% @assignment.incomplete_submission_students.each do |student|%>
+      <tr class='table-danger'>
+        <td class='col'> <%= student.name %></td>
+        <td class='col'> Incomplete </td>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

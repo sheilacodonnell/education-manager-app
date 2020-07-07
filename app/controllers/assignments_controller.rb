@@ -27,7 +27,7 @@ class AssignmentsController < ApplicationController
   end
 
   def load_subject
-    @subject = Subject.find_by(params[:subject_id])
+    @subject = Subject.find(params[:subject_id])
   end
 
   def assignment_params
