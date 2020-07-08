@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200707163934) do
+ActiveRecord::Schema.define(version: 20200708150618) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer "subject_id"
@@ -60,6 +60,9 @@ ActiveRecord::Schema.define(version: 20200707163934) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "provider"
+    t.string "uid"
+    t.text "image"
     t.index ["email"], name: "index_teachers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_teachers_on_reset_password_token", unique: true
   end

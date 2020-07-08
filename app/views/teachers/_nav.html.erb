@@ -5,10 +5,10 @@
 <ul class="nav justify-content-center">
 
   <li class="nav-item">
-  <%= link_to 'Teacher Home', teacher_path(current_teacher), class: "nav-link"%>
+  <%= link_to 'Teacher Home', teacher_path(@teacher), class: "nav-link"%>
   </li>
   <li class="nav-item">
-  <%= link_to 'Subjects', teacher_subjects_path(current_teacher), class: "nav-link"%>
+  <%= link_to 'Subjects', teacher_subjects_path(@teacher), class: "nav-link"%>
   </li>
   <li class="nav-item">
   <%= link_to 'Students', students_path, class: "nav-link"%>
