@@ -3,8 +3,8 @@ class AssignmentsController < ApplicationController
   before_action :load_subject
 
   def index
-    @current_assignments = @subject.current_assignments.order(:due_date)
-    @past_assignments = @subject.past_assignments.order(due_date: :desc)
+    @current_assignments = @subject.assignments.current.order(:due_date)
+    @past_assignments = @subject.assignments.past_due.order(due_date: :desc)
   end
 
   def new

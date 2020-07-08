@@ -12,7 +12,7 @@ class SubmissionsController < ApplicationController
   def create
     @submission = @assignment.submissions.create!(submission_params)
     if @submission.save
-    redirect_to teacher_subject_assignment_submissions_path(@assignment)
+      redirect_to teacher_subject_assignment_submissions_path(@assignment)
     else
       render :new
     end

@@ -7,14 +7,16 @@
       <tr>
         <th scope="col">First Name</th>
         <th scope="col">Last Name</th>
+        <th scope="col">Grade Average</th>
         <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
-      <% @subject.students.each do |student|%>
+      <% @subject.subject_students.each do |student|%>
         <tr>
           <td> <%= student.first_name %></td>
           <td> <%= student.last_name %></td>
+          <td> <%= student.average %></td>
           <td><%= link_to 'Remove', teacher_subject_remove_student_path(subject_id: @subject.id, student_id: student.id)%></td>
         </tr>
       <% end %>
