@@ -23,7 +23,7 @@ class AssignmentsController < ApplicationController
   private
 
   def load_teacher
-    @teacher = current_teacher
+    @teacher = Teacher.find(params[:teacher_id])
   end
 
   def load_subject
@@ -31,6 +31,6 @@ class AssignmentsController < ApplicationController
   end
 
   def assignment_params
-    params.require(:assignment).permit(:title, :due_date).merge(teacher_id: current_teacher.id, subject_id: @subject.id)
+    params.require(:assignment).permit(:title, :due_date).merge(teacher_id: @teacher.id, subject_id: @subject.id)
   end
 end

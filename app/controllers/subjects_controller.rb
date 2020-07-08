@@ -42,7 +42,7 @@ class SubjectsController < ApplicationController
   private
 
   def load_teacher
-    @teacher = current_teacher
+    @teacher = Teacher.find(params[:teacher_id])
   end
 
   def load_subject
@@ -53,14 +53,14 @@ class SubjectsController < ApplicationController
     params.require(:subject)
       .permit(:name,
               :class_period)
-      .merge(teacher_id: current_teacher.id)
+      .merge(teacher_id: @teacher.id)
   end
 
   def update_subject_params
     params.require(:subject)
       .permit(:name,
               :class_period)
-      .merge(teacher_id: current_teacher.id,
+      .merge(teacher_id: @teacher.id,
              student_ids: @subject.student_ids + params[:subject][:student_ids].reject(&:blank?))
   end
 end

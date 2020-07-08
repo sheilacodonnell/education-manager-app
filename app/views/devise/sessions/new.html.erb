@@ -1,5 +1,9 @@
-<h2>Log in</h2>
-  <%= link_to "Sign in with Facebook", '/auth/facebook' %>
+<div class="container">
+<h3 class="text-center mt-5"> Welcome to Classroom Manager!</h3>
+
+<div class="row mt-5">
+<div class="col-6 text-center">
+<h5>Log In</h5>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
@@ -20,8 +24,20 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "Log in", class: 'btn btn-sm btn-success' %>
   </div>
 <% end %>
 
+  <%= link_to 'Sign in with Facebook', '/auth/facebook', class: "btn btn-lg btn-primary mt-3" %>
+
+<div class="mt-3">
 <%= render "devise/shared/links" %>
+</div>
+</div>
+
+<div class='col-6'>
+<img src="https://c.pxhere.com/images/85/0c/39bd0ae20c1ddfd6a45d64a6022f-1587825.jpg!d" class="img-fluid" alt="Responsive image">
+
+</div>
+</div>
+</div>
