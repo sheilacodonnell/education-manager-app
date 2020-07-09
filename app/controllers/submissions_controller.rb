@@ -2,7 +2,7 @@ class SubmissionsController < ApplicationController
   before_action :load_teacher, :load_subject, :load_assignment
 
   def index
-    @submissions = @assignment.submissions.includes(:student)
+    @submissions = @assignment.submissions.includes(:subject_student)
   end
 
   def new
@@ -33,6 +33,6 @@ class SubmissionsController < ApplicationController
   end
 
   def submission_params
-    params.require(:submission).permit(:student_id, :grade)
+    params.require(:submission).permit(:subject_student_id, :grade)
   end
 end

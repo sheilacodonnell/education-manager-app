@@ -1,19 +1,12 @@
 <div class="container">
-<%= render 'teachers/nav' %>
-
-<div class='row'>
-  <h3 class='col-md-4'>All Students</h3>  
+  <%= render 'teachers/nav' %>
+  <div class='row'>
+    <h3 class='col-md-4'>All Students</h3>
+  </div>
+  <%= link_to 'Add Student', new_teacher_student_path, class: 'btn btn-success float-right mb-3'%>
+  <h5 class='mt-2'>Your Current Students</h5>
+    <%= render 'table', students: @teacher_students, custom_style: 'table-success' %>
+  <h5>All Students</h5>
+    <%= render 'table', students: @students, custom_style: 'table-info' %>
 </div>
-
-<%= link_to 'Add Student', new_teacher_student_path, class: 'btn btn-success float-right mb-3'%>
-
-<h5 class='mt-2'>Your Current Students</h5>
-  <%= render 'table', students: @teacher_students, custom_style: 'table-success' %>
-
-<h5>All Students</h5>
-  <%= render 'table', students: @students, custom_style: 'table-info' %>
-</div>
-
-
-
 </div>

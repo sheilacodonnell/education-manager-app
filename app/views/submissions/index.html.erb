@@ -1,9 +1,14 @@
 <div class='container'>
 <%= render 'teachers/nav' %>
-
-  <div class='row mt-3 mb-3'>
-    <h3 class='col-md-6'>Submissions for <%= @assignment.title %></h3>
+  <div class='row'>
+    <%= link_to teacher_subject_assignments_path(@teacher, @subject, @assignment), class: ' float-left btn btn-link' do %>
+     <i class="fa fa-arrow-left" aria-hidden="true"></i> Back to Assignments
+<% end %>
+</div>
+  <div class='text-center'>
+    <h4>Submissions for <%= @assignment.title %> (<%= @assignment.subject.name %> - <%= class_period_formatted(@assignment.subject) %>)</h4>
   </div>
+
   <% if @assignment.incomplete_submission_students.present? %>
     <%= link_to 'Add Submission', new_teacher_subject_assignment_submission_path(@teacher, @subject, @assignment), class: ' float-right btn btn-success mb-3'%>
   <% end%>
@@ -12,23 +17,21 @@
       <tr>
         <th scope="col">Name</th>
         <th scope="col">Grade</th>
-        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
       <% @submissions.each do |submission|%>
-      <tr class='table-success'>
-        <td class='col'> <%= submission.student.name %></td>
-        <td class='col'> <%= submission.grade %></td>
-        </td>
-      </tr>
+        <tr class='table-success'>
+          <td class='col'> <%= submission.subject_student.name %></td>
+          <td class='col'> <%= number_to_percentage(submission.grade, strip_insignificant_zeros: true)%></td>
+        </tr>
       <% end %>
       <% @assignment.incomplete_submission_students.each do |student|%>
-      <tr class='table-danger'>
-        <td class='col'> <%= student.name %></td>
-        <td class='col'> Incomplete </td>
-        </td>
-      </tr>
+        <tr class='table-danger'>
+          <td class='col'> <%= student.name %></td>
+          <td class='col'> Incomplete </td>
+          </td>
+        </tr>
       <% end %>
     </tbody>
   </table>

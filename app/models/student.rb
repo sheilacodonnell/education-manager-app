@@ -1,15 +1,21 @@
 class Student < ApplicationRecord
+  include GpaCalculator
+
   has_many :subject_students
   has_many :subjects, through: :subject_students
   has_many :assignments, through: :subjects
-  has_many :submissions
+  has_many :submissions, through: :subject_students
   
-  attr_accessor :GRADES
+  attr_accessor :GRADES, :gpa
 
   GRADES = ['Freshman', 'Sophomore', 'Junior', 'Senior']
 
   def name
     [first_name, last_name].join(' ')
   end
-  
+
+  def gpa
+    grades = subject_students.map(&:average)
+    calculate(grades)
+  end
 end

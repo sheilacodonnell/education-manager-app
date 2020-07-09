@@ -1,0 +1,58 @@
+<div class="container">
+  <%= render 'teachers/nav' %>
+  <h3 class="text-center"><%=@student.name%> Student Profile</h3>
+  <div class="row mt-5 mb-5">
+    <div class="col-sm">
+      <ul class="list-group">
+        <li class="list-group-item">Year: <%= @student.grade %></li>
+        <li class="list-group-item">Your classes: <%= @shared_subjects.any? ? @shared_subjects.pluck(:name).to_sentence : 'None'%></li>
+        <li class="list-group-item">GPA: <%= @student.gpa %></li>
+      </ul>
+    </div>
+    <div class="col-sm">
+      <h5>Schedule</h5>
+      <table class="table table-sm">
+        <thead>
+          <tr class="table-success">
+            <th scope="col">Class Period</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Teacher</th>
+            <th scope="col">Average</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @student_subjects.each do |student_subject|%>
+          <tr>
+            <td> <%= student_subject.class_period %></td>
+            <td> <%= student_subject.subject_name %></td>
+            <td> <%= student_subject.subject.teacher.name %></td>
+            <td> <%= number_to_percentage(student_subject.average, precision: 2) %></td>
+          </tr>
+          <% end%> 
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <% if @shared_subjects.any? %>
+  <h5>Your Assignments</h5>
+  <table class="table table-sm">
+    <thead>
+      <tr class="table-info">
+        <th scope="col">Subject</th>
+        <th scope="col">Assignment</th>
+        <th scope="col">Grade</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @submissions.each do |submission|%>
+      <tr>
+        <td> <%= submission.assignment.subject.name %></td>
+        <td> <%= submission.assignment.title %></td>
+        <td> <%= number_to_percentage(submission.grade, strip_insignificant_zeros: true) %></td>
+      </tr>
+      <% end%> 
+    </tbody>
+  </table>
+  <% end%> 
+</div>
+</div>

@@ -5,7 +5,7 @@
     <%= form_with(model: @submission, url: teacher_subject_assignment_submissions_path(@teacher, @subject, @assignment)) do |submission_form| %>
     <form>
       <div class="form-group">
-        <%= submission_form.collection_select(:student_id, @assignment.incomplete_submission_students, :id, :name, {}, class: 'form-control') %>
+        <%= submission_form.collection_select(:subject_student_id, @assignment.incomplete_submission_students, :id, :name, {}, class: 'form-control') %>
       </div>
       <div class="form-group">
         <%= submission_form.label :grade, class: 'control-label' %>

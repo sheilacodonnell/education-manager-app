@@ -1,12 +1,24 @@
 class SubjectStudent < ApplicationRecord
   belongs_to :subject
   belongs_to :student
-  has_many :submissions, through: :students
+  has_many :submissions
+  has_many :assignments, through: :subject
+  delegate :class_period, to: :subject
   delegate :first_name, :last_name, to: :student
+  delegate :name, to: :subject, prefix: true
 
-  def calculate_current_average
-    student_submissions = student.submissions.select{|submission| submission.assignment.subject_id == subject_id}
-    current_average = student_submissions.sum(&:grade) / student_submissions.length
-    update(average: current_average)
+
+  attr_accessor :average
+
+  def name
+    student.name
+  end
+
+  def average
+    if submissions.length.zero?
+      100
+    else
+      submissions.sum(&:grade) / submissions.length
+    end
   end
 end

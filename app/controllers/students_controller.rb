@@ -2,8 +2,8 @@ class StudentsController < ApplicationController
   before_action :load_teacher
 
   def index
-    @students = Student.all.order(grade: :desc)
-    @teacher_students = @teacher.students.uniq
+    @students = Student.all.includes(:subject_students).order(grade: :desc)
+    @teacher_students = @teacher.students.includes(:subject_students).uniq
   end
 
   def new
@@ -18,6 +18,13 @@ class StudentsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+    @student = Student.find(params[:id])
+    @shared_subjects = @student.subjects & @teacher.subjects
+    @student_subjects = @student.subject_students.includes(:subject).order('subjects.class_period')
+    @submissions  = @student_subjects.collect(&:submissions).flatten
   end
 
   private
