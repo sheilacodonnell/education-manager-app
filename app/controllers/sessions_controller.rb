@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+
 	def create
 		@teacher = Teacher.find_or_create_by!(uid: auth['uid']) do |u|
 			u.first_name = auth['info']['first_name']

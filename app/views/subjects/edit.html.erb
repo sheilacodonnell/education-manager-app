@@ -16,7 +16,7 @@
         <tr>
           <td> <%= student.first_name %></td>
           <td> <%= student.last_name %></td>
-          <td> <%= student.average %></td>
+          <td> <%= number_to_percentage(student.average, precision: 2) %></td>
           <td><%= link_to 'Remove', teacher_subject_remove_student_path(subject_id: @subject.id, student_id: student.id)%></td>
         </tr>
       <% end %>

@@ -8,8 +8,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body style="background-color: #CFECEA;">
-
+  <body style= "<%= @body_class %>" >
     <%= yield %>
   </body>
 </html>
