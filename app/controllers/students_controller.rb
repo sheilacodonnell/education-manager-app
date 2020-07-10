@@ -2,8 +2,8 @@ class StudentsController < ApplicationController
   before_action :load_teacher
 
   def index
-    @students = Student.all.includes(:subject_students).order(grade: :desc)
-    @teacher_students = @teacher.students.includes(:subject_students).uniq
+    @students = Student.all.includes(:subject_students).order(:last_name)
+    @teacher_students = @teacher.students.includes(:subject_students).order(:last_name).uniq
   end
 
   def new

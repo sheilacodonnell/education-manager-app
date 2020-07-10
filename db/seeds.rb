@@ -3,8 +3,11 @@
 #
 # Examples:
 #
+
+require 'faker'
+
+10.times do
 Student.create([
-    { first_name: 'Harry', last_name: 'Potter' }, 
-    { first_name: 'Katniss', last_name: 'Everdeen' },
-    { first_name: 'Han', last_name: 'Solo' }, 
-    { first_name: 'Peter', last_name: 'Parker'}])
+    { first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, grade: Student::GRADES.sample}])
+end
+

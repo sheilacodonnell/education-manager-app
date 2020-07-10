@@ -33,6 +33,7 @@ gem 'jquery-rails'
 gem 'font-awesome-sass'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'faker'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
