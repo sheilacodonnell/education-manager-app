@@ -1,21 +1,21 @@
-  <table class="table table-striped">
-    <thead>
-      <tr class="<%= custom_style %>"%>
-        <th scope="col">Title</th>
-        <th scope="col">Due Date</th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% assignments.each do |assignment|%>
-        <tr>
-          <td class='col-md-4'> <%= assignment.title %></td>
-          <td class='col-md-4'> <%= basic_date(assignment.due_date) %></td>
-          <td><%= link_to teacher_subject_assignment_submissions_path(@teacher.id, @subject, assignment), class: "btn btn-primary" do %>
-            Submissions
-          <% end %>
-        </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+<table class="table table-striped">
+  <thead>
+    <tr class="<%= custom_style %>"%>
+      <th scope="col">Title</th>
+      <th scope="col">Due Date</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% assignments.each do |assignment|%>
+    <tr>
+      <td class='col-md-4'> <%= assignment.title %></td>
+      <td class='col-md-4'> <%= basic_date(assignment.due_date) %></td>
+      <td><%= link_to teacher_subject_assignment_submissions_path(@teacher.id, @subject, assignment), class: "btn btn-primary" do %>
+        Submissions
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

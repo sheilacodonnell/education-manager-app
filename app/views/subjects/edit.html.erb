@@ -10,9 +10,7 @@
         <th scope="col">Grade Average</th>
         <th scope="col"></th>
         <th scope="col"></th>
-                <th scope="col"></th>
-
-
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -23,7 +21,6 @@
           <td> <%= number_to_percentage(student.average, precision: 2) %></td>
           <td><%= link_to 'Remove', teacher_subject_remove_student_path(subject_id: @subject.id, student_id: student.id)%></td>
           <td><%= link_to 'View More', teacher_student_path(teacher_id: @teacher.id, id: student.student_id)%></td>
-
         </tr>
       <% end %>
     </tbody>

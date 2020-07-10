@@ -1,6 +1,8 @@
 class Student < ApplicationRecord
   include GpaCalculator
 
+  validates :first_name, :last_name, :grade, presence: true
+
   has_many :subject_students
   has_many :subjects, through: :subject_students
   has_many :assignments, through: :subjects
