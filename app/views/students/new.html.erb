@@ -1,8 +1,19 @@
 <div class="container">
 <%= render 'teachers/nav' %>
 <div class='col-md-8'>
-<h4>Add Student</h4>
-    <%= form_with(model: @student, url: teacher_students_path) do |student_form| %>
+  <h4>Add Student</h4>
+  
+  <% if @student.errors.any? %>
+    <div class="alert alert-danger"> 
+      <ul>
+      <% @student.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <%= form_for(@student, url: teacher_students_path) do |student_form| %>
       <div class="row">
         <div class="form-group col">
           <%= student_form.text_field :first_name, class: 'form-control', placeholder:"First name" %>

@@ -12,7 +12,7 @@ class SubjectsController < ApplicationController
   end
 
   def create
-    @subject = Subject.new(create_subject_params)
+    @subject = Subject.create(create_subject_params)
     if @subject.valid?
       @subject.save
       redirect_to teacher_subjects_path(@teacher)

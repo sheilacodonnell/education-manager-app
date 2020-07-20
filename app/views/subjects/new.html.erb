@@ -3,7 +3,17 @@
 
   <h3>Add subject to your schedule</h3>
 
-  <%= form_with(model: @subject, url: teacher_subjects_path(@teacher)) do |subject_form| %>
+  <% if @subject.errors.any? %>
+    <div class="alert alert-danger"> 
+      <ul>
+      <% @subject.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_for(@subject, url: teacher_subjects_path(@teacher)) do |subject_form| %>
 
     <form>
       <div class="row">

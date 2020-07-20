@@ -2,7 +2,18 @@
   <%= render 'teachers/nav' %>
   <div class="col-md-4">
     <h3>Add Submission</h3>
-    <%= form_with(model: @submission, url: teacher_subject_assignment_submissions_path(@teacher, @subject, @assignment)) do |submission_form| %>
+
+    <% if @submission.errors.any? %>
+      <div class="alert alert-danger"> 
+        <ul>
+        <% @submission.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= form_for(@submission, url: teacher_subject_assignment_submissions_path(@teacher, @subject, @assignment)) do |submission_form| %>
     <form>
       <div class="form-group">
         <%= submission_form.collection_select(:subject_student_id, @assignment.incomplete_submission_students, :id, :name, {}, class: 'form-control') %>

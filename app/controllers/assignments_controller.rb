@@ -12,9 +12,9 @@ class AssignmentsController < ApplicationController
   end
 
   def create
-    @assignment = Assignment.create!(assignment_params)
+    @assignment = Assignment.create(assignment_params)
     if @assignment.save
-    redirect_to teacher_subject_assignments_path
+      redirect_to teacher_subject_assignments_path
     else
       render :new
     end
