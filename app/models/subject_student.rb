@@ -16,7 +16,7 @@ class SubjectStudent < ApplicationRecord
     if submissions.length.zero?
       100
     else
-      submissions.sum(&:grade) / submissions.length
+      submissions.with_past_due_assignments.sum(&:grade) / submissions.with_past_due_assignments.length
     end
   end
 end
