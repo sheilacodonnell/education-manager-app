@@ -8,12 +8,8 @@ class SubjectStudent < ApplicationRecord
 
   attr_accessor :average
 
-  def name
-    student.name
-  end
-
   def average
-    if submissions.length.zero?
+    if submissions.with_past_due_assignments.length.zero?
       100
     else
       submissions.with_past_due_assignments.sum(&:grade) / submissions.with_past_due_assignments.length

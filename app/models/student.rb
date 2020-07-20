@@ -12,6 +12,10 @@ class Student < ApplicationRecord
 
   GRADES = ['Freshman', 'Sophomore', 'Junior', 'Senior']
 
+  def self.search(search)
+    where(last_name: search) 
+  end
+
   def name
     [first_name, last_name].join(' ')
   end

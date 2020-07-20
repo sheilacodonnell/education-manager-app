@@ -2,8 +2,13 @@ class StudentsController < ApplicationController
   before_action :load_teacher
 
   def index
-    @students = Student.all.includes(:subject_students).order(:last_name)
-    @teacher_students = @teacher.students.includes(:subject_students).order(:last_name).uniq
+    if params[:search].present?
+      @students = Student.search(params[:search])
+      @teacher_students = @teacher.students.search(params[:search]).includes(:subject_students).order(:last_name).uniq
+    else
+      @students = Student.all.includes(:subject_students).order(:last_name)
+      @teacher_students = @teacher.students.includes(:subject_students).order(:last_name).uniq
+    end
   end
 
   def new
